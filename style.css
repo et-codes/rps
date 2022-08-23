@@ -1,15 +1,20 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   background: orange;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 header {
   text-align: center;
-  margin-bottom: 32px;
+  margin: 32px 0;
 }
 
 .title {
@@ -19,7 +24,7 @@ header {
 }
 
 .subtitle {
-  font-family: "Gloria Hallelujah", cursive;
+  font-family: "Gloria Hallelujah";
   font-size: 24px;
   margin: 0;
   margin-bottom: 16px;
@@ -31,24 +36,43 @@ header {
   height: 1.75em;
 }
 
-.buttons {
+.rps-buttons {
   display: flex;
-  gap: 32px;
+  gap: 48px;
   margin: 16px;
   margin-bottom: 32px;
 }
 
-.buttons img:hover {
+.rps-button:hover {
   scale: 1.15;
 }
 
-footer {
+.attribution {
   font-family: "Courier New", Courier, monospace;
   font-size: 12px;
   margin: 0;
   margin-top: 64px;
 }
 
-footer a {
+.attribution a {
   color: black;
+}
+
+.signature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Gloria Hallelujah";
+  gap: 8px;
+}
+
+#logo {
+  transform: rotate(-360deg);
+  transition: transform 0.7s;
+  vertical-align: middle;
+}
+
+#logo:hover {
+  transform: rotate(360deg);
+  transition: transform 0.7s;
 }
