@@ -12,43 +12,30 @@ let matchResult;
 
 const handleClick = (event) => {
   playerChoice = event.target.id;
-  const randomIndex = parseInt(Math.random() * 3);
+  const randomIndex = parseInt(Math.random() * choices.length);
   computerChoice = choices[randomIndex];
-  getResult();
+  matchResult = getResult();
+  updateScore();
   clearDisplay();
   setTimeout(updateDisplay, 75);
 }
 
 const getResult = () => {
-  let result = 0;  // -1 computer, 0 tie, 1 player
-  if (playerChoice === 'rock') {
-    if (computerChoice === 'scissors') {
-      result = 1;
-    } else if (computerChoice === 'paper') {
-      result = -1;
-    }
-  } else if (playerChoice === 'paper') {
-    if (computerChoice === 'scissors') {
-      result = -1;
-    } else if (computerChoice === 'rock') {
-      result = 1;
-    }
-  } else if (playerChoice === 'scissors') {
-    if (computerChoice === 'rock') {
-      result = -1;
-    } else if (computerChoice === 'paper') {
-      result = 1;
-    }
+  if (playerChoice === computerChoice) return 'Tie!';
+
+  switch (playerChoice) {
+    case 'rock':
+      return computerChoice === 'scissors' ? 'Player won!' : 'Computer won!';
+    case 'paper':
+      return computerChoice === 'rock' ? 'Player won!' : 'Computer won!';
+    case 'scissors':
+      return computerChoice === 'paper' ? 'Player won!' : 'Computer won!';
   }
-  if (result === 1) {
-    matchResult = 'Player won!';
-    playerScore += 1;
-  } else if (result === -1) {
-    matchResult = 'Computer won!';
-    computerScore += 1;
-  } else if (result === 0) {
-    matchResult = 'Tie!';
-  }
+}
+
+const updateScore = () => {
+  if (matchResult === 'Player won!') playerScore++;
+  if (matchResult === 'Computer won!') computerScore++;
 }
 
 const clearDisplay = () => {
@@ -60,15 +47,10 @@ const clearDisplay = () => {
 
 const updateDisplay = () => {
   divScore.textContent = `Player: ${playerScore}  |  Computer: ${computerScore}`;
-  if (playerChoice) {
-    divPlayerChoice.textContent = `Player chose ${playerChoice}`;
-  }
-  if (computerChoice) {
-    divComputerChoice.textContent = `Computer chose ${computerChoice}`;
-  }
-  if (matchResult) {
-    divResult.textContent = matchResult;
-  }
+  if (!playerChoice || !computerChoice) return;
+  divPlayerChoice.textContent = `Player chose ${playerChoice}`;
+  divComputerChoice.textContent = `Computer chose ${computerChoice}`;
+  divResult.textContent = matchResult;
 }
 
 // Set event listeners

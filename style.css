@@ -4,7 +4,7 @@ html {
   padding: 0;
 }
 
-.container {
+.main-container {
   background: orange;
   height: 100vh;
   display: flex;
@@ -68,11 +68,11 @@ header {
 
 #logo {
   transform: rotate(-360deg);
-  transition: transform 0.7s;
+  transition: transform 0.5s;
   vertical-align: middle;
 }
 
 #logo:hover {
   transform: rotate(360deg);
-  transition: transform 0.7s;
+  transition: transform 0.5s;
 }
